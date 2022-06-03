@@ -1,0 +1,17 @@
+{
+  "paths": {
+    "@/*": ["./src/*"],
+    "@assets/*": ["./src/assets/*"],
+    "@components/*": ["./src/components/*"],
+    "@defineds/*": ["./src/defineds/*"],
+    "@hooks/*": ["./src/hooks/*"],
+    "@icons/*": ["./src/icons/*"],
+    "@lang/*": ["./src/lang/*"],
+    "@layout/*": ["./src/layout/*"],
+    "@lib/*": ["./src/lib/*"],
+    "@store/*": ["./src/store/*"],
+    "@styles/*": ["./src/styles/*"],
+    "@utils/*": ["./src/utils/*"],
+    "@pages/*": ["./src/pages/*"],
+  },
+}
