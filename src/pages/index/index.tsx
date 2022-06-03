@@ -25,7 +25,7 @@ const Index:FC = () => {
   const [showToast] = useToast({ mask: true });
 
   const handleModal = useCallback(() => {
-    show({ content: "不如给一个star⭐️!" }).then(() => {
+    show({ content: "不如给一个star⭐️!!!" }).then(() => {
       showToast({ title: "点击了支持!" });
     });
   }, [show, showToast]);
