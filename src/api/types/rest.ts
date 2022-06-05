@@ -14,6 +14,12 @@ export enum RequestMethod {
   PUT ='PUT',
   DELETE= 'DELETE'
 }
+/**
+ * 自定义返回类型code
+ */
+export enum ResultCode {
+  SUCCESS = 200
+}
 
 /**
  * 接口响应数据

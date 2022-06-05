@@ -16,8 +16,8 @@ const HomePageSwiper: FC<any> = (props: any) => {
       indicatorDots
       autoplay
     >
-      {bannerList.map(item => (
-        <SwiperItem key={item} className=''>
+      {bannerList.map((item,index) => (
+        <SwiperItem key={index} className=''>
           <Image src={item} className='banner-list-item-img' />
           {/* banner-{item} */}
         </SwiperItem>

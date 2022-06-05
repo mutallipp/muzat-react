@@ -1,4 +1,4 @@
-import { IUserState } from "./types";
+import IUserState  from "./types";
 
 /**
  * 用户相关
