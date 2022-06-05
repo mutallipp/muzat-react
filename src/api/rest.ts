@@ -6,7 +6,7 @@ import { IAnyObj } from '@defineds/index'
 import { getStore } from "@store/index"
 import configure from '@/config/index'
 import {
-  IRestHeader, RequestFucNames, RequestMethod,
+  IRestHeader, IResult, RequestFucNames, RequestMethod,
 } from './types/rest'
 import buildURL from '../../node_modules/axios/lib/helpers/buildURL'
 import settle from '../../node_modules/axios/lib/core/settle'
@@ -160,12 +160,12 @@ class Axios {
    * @param + autoCancel: boolean 离开路由时是否自动取消当前页面发起的所有请求，默认: true
    * @returns Promise<any>
    */
-  request<T> (url: string, params: IAnyObj = {}, config: IAnyObj = {}): Promise<T> {
+  request<T> (url: string, params: IAnyObj = {}, config: IAnyObj = {}): Promise<IResult<T>> {
     if (!this._axiosCustom) {
       return (Promise.resolve({
         code: -100,
         msg: '',
-      })) as unknown as Promise<T>
+      })) as unknown as Promise<IResult<T>>
     }
 
     const {
@@ -183,9 +183,8 @@ class Axios {
     // }
 
     if (!config.hideLoading) {
-      utils.toast('处理中。。。', 'loading')
+      utils.toast('处理中。。。', 'loading',60*1000)
     }
-    console.log('HOST',configure.HOST);
 
     const newParams = this._getParams(params, config)
     const newUrl = this._getUrl(url, target)
@@ -213,7 +212,7 @@ class Axios {
     }
     console.log(args)
     return this._axiosCustom(args).then(async res => {
-      // uni.hideToast()
+      Taro.hideToast()
       const { data } = res
       console.log('请求成功', res)
 
@@ -251,7 +250,7 @@ class Axios {
       }
     }, async error => {
       // 处理请求报错，如状态码为500、404、422等
-      // uni.hideToast()
+      Taro.hideToast()
       if (error?.response?.status) {
         switch (error.response.status) {
           // 未登录
@@ -281,16 +280,14 @@ class Axios {
 
       console.error(`网络请求异常，请求接口: ${args.url}, 异常状态码: ${newError.status}`)
       if (autoErrorData) {
-        utils.toast(`网络请求异常, 异常状态码: ${newError.status}`, 'error', {
-          duration: 7000,
-        })
+        utils.toast(`网络请求异常, 异常状态码: ${newError.status}`, 'error',7000)
       }
       return Promise.reject(newError)
     })
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private _get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1, requestMethod:RequestFucNames = RequestFucNames.REQUEST): Promise<T> {
+  private _get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1, requestMethod:RequestFucNames = RequestFucNames.REQUEST): Promise<IResult<T>> {
     if (!href) return Promise.reject(new Error('缺少入口'))
     const newConfig = {
       headers: config.headers || {},
@@ -304,7 +301,7 @@ class Axios {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private _post<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1, requestMethod = 'request'): Promise<T> {
+  private _post<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1, requestMethod = 'request'): Promise<IResult<T>> {
     if (!href) return Promise.reject(new Error('缺少入口'))
     const newConfig = {
       headers: config.headers || {},
@@ -338,7 +335,7 @@ class Axios {
    * @param config: object axios参数，选填，默认: {}
    * @returns Promise<any>
    */
-  public async get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1): Promise<T> {
+  public async get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1): Promise<IResult<T>> {
     return this._get<T>(href, params, config, outTime)
   }
 
@@ -349,7 +346,7 @@ class Axios {
    * @param config: object axios参数，选填，默认: {}
    * @returns Promise<any>
    */
-  async post<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1): Promise<T> {
+  async post<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1): Promise<IResult<T>> {
     return this._post<T>(href, params, config, outTime)
   }
 }

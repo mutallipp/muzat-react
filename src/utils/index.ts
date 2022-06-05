@@ -1,7 +1,7 @@
-import { useEnv, useNavigationBar, useModal, useToast } from "taro-hooks";
 
 import qs from 'qs'
 import { IAnyObj } from '@/defineds'
+import Taro from "@tarojs/taro";
 import { ActualTypeElementType, FilterNullable, StringToType } from './types/index'
 
 /**
@@ -102,12 +102,13 @@ type toastType = 'error' | 'success' | 'loading' | 'none'
 export const toast = (
   msg: string,
   type: toastType = 'none',
-  option: IAnyObj = {},
+  duration:number = 1500,
 )=>{
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [showToast] = useToast({ mask: true });
-  showToast({ title:msg });
-
+  Taro.showToast({
+    title: msg,
+    icon: type,
+    duration
+  })
 }
 /**
  * 睡眠函数

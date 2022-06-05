@@ -23,6 +23,7 @@ const config = {
   alias: {
     '@': resolve('/src'),
     "@assets": resolve("/src/assets"),
+    "@api": resolve("/src/api"),
     "@components": resolve("/src/components"),
     "@defineds":resolve('/src/defineds'),
     "@hooks": resolve("/src/hooks"),
