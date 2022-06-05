@@ -11,7 +11,6 @@ export let r = null
  */
 const userState: IUserState = {
   token: '',
-  // r:t,
   isReady: new Promise(resolve => r = resolve)
 }
 export default userState

@@ -7,6 +7,5 @@ export default interface IUserState {
   /**
    * 否初始化完毕
    */
-  isReady:Promise<boolean>,
-  r?:any
+  isReady:Promise<boolean|void>,
 }
