@@ -286,7 +286,6 @@ class Axios {
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private _get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1, requestMethod:RequestFucNames = RequestFucNames.REQUEST): Promise<IResult<T>> {
     if (!href) return Promise.reject(new Error('缺少入口'))
     const newConfig = {
