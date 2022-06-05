@@ -11,6 +11,13 @@ function userReducer(state: IUserState = userState, action: UserActionType) {
     /**
      * 登录
      */
+    case UserTypes.SET_IS_READY: {
+      const newState = {
+        isReady:action.payload
+      }
+      Object.assign(state, newState)
+      break
+    }
     case UserTypes.LOGIN: {
       const { token = '' } = action.payload
       const newState = {

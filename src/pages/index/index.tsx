@@ -7,16 +7,22 @@ import HomePageSwiper from './components/home-page-swiper'
 
 import './index.scss'
 
-const Index: FC<any> = (props: any) => {
+const Index: FC<any> = () => {
   const {
-    token
+    token,
+    isReady,
   } = useSelector(makeSelectors)
 
-  useEffect(()=>{
-    // getData()
+  const init = useCallback( async()=>{
+    // 等待做初始化操作，比如登录拿到token
+    if(!isReady) return
+    await isReady
     console.log('token-----',token);
+  },[isReady])
 
-  },[token])
+  useEffect(()=>{
+    init()
+  },[init])
   return (
     <View>
       index

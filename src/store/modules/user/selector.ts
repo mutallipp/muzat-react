@@ -10,8 +10,18 @@ import IUserState from './types'
   return user || userState
 }
 /**
- * 获取token
+ * 是否已经登录了
  * */
+ export const makeSelectIsReady = () => createSelector(
+  selectUserState,
+  state => {
+    return state.isReady
+  },
+)
+/**
+ *
+ * @returns token
+ */
  export const makeSelectToken = () => createSelector(
   selectUserState,
   state => {

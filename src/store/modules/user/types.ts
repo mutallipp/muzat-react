@@ -4,4 +4,8 @@
  */
 export default interface IUserState {
   token: string,
+  /**
+   * 否初始化完毕
+   */
+  isReady?:Promise<boolean>,
 }
