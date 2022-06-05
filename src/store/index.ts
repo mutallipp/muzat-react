@@ -22,7 +22,7 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 )
 
-export default function getStore<T> (serverInitialState?) {
+export function getStore<T> (serverInitialState?) {
   // const store = createStore(createReducer(), enhancer)
   // return store
   if (serverInitialState) {

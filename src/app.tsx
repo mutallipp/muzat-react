@@ -1,8 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
 
-import { FC } from "./defineds";
-import getStore from "./store";
+import "taro-ui/dist/style/index.scss"; // 全局引入一次即可
+
+import { FC } from "./defineds"
+import { getStore } from "./store"
+
 
 import "./app.scss";
 

@@ -1,42 +1,83 @@
 {
   "compilerOptions": {
-    "target": "es2017",
     "module": "commonjs",
-    "removeComments": false,
-    "preserveConstEnums": true,
+    "importHelpers": true,
     "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "useDefineForClassFields": true,
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
-    "outDir": "lib",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "rootDir": ".",
+    "target": "es6",
     "jsx": "react",
-    "allowJs": true,
-    "resolveJsonModule": true,
     "typeRoots": [
-      "node_modules/@types"
+      "./node_modules/@types"
+    ],
+    "sourceMap": true,
+    "outDir": "./private/server",
+    "baseUrl": ".",
+    "incremental": true,
+    "allowJs": true,
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@defineds/*": ["./src/defineds/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@icons/*": ["./src/icons/*"],
-      "@lang/*": ["./src/lang/*"],
-      "@layout/*": ["./src/layout/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@store/*": ["./src/store/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@pages/*": ["./src/pages/*"],
+      "@/*": [
+        "./src/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@defineds/*": [
+        "./src/defineds/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@icons/*": [
+        "./src/icons/*"
+      ],
+      "@lang/*": [
+        "./src/lang/*"
+      ],
+      "@layout/*": [
+        "./src/layout/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
     }
   },
-  "include": ["./src", "global.d.ts"],
+  "include": [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "types": [
+    "typePatches"
+  ],
   "compileOnSave": false
 }

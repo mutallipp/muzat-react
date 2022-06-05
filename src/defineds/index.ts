@@ -16,10 +16,7 @@ export interface IPropsBase {
   // 路由配置项
   route?: any,
 }
- /**
- * 函数式组件类型
- */
-export type FC<P extends IPropsBase = IPropsBase> = IMyFunctionComponent<P>
+
  /**
  * 函数式组件类型
  */
@@ -28,4 +25,14 @@ export interface IMyFunctionComponent<P> extends FunctionComponent<P> {
    * 是否已执行过onLoad
    */
   isRunOnLoad?: boolean,
+}
+ /**
+ * 函数式组件类型
+ */
+  export type FC<P extends IPropsBase = IPropsBase> = IMyFunctionComponent<P>
+/**
+ * 具有任意属性的对象
+ */
+ export interface IAnyObj {
+  [propName: string]: any
 }

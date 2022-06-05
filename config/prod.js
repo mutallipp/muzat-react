@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     NODE_ENV: '"production"',
+    VITE_APP_LUGAT_API:'测试哦'
   },
   defineConstants: {},
   mini: {},
