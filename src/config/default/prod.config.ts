@@ -1,4 +1,4 @@
 export default {
-  HOST:'https://mina.mutallip.cn',
+  HOST: 'https://mina.mutallip.cn',
 }
 

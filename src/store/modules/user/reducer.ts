@@ -19,9 +19,8 @@ function userReducer(state: IUserState = userState, action: UserActionType) {
       break
     }
     case UserTypes.LOGIN: {
-      const { token = '' } = action.payload
       const newState = {
-        token
+        token:action.payload
       }
       Object.assign(state, newState)
       break

@@ -6,7 +6,7 @@ import { IAnyObj } from '@defineds/index'
 import { getStore } from "@store/index"
 import configure from '@/config/index'
 import {
-  IRestHeader, IResult, RequestFucNames, RequestMethod,
+  IResult, RequestFucNames, RequestMethod,
 } from './types/rest'
 import buildURL from '../../node_modules/axios/lib/helpers/buildURL'
 import settle from '../../node_modules/axios/lib/core/settle'
@@ -25,7 +25,15 @@ class Axios {
    */
   store: any
 
+  _token:string
+
   constructor () {
+
+    this.request = this.request.bind(this)
+    this.get = this.get.bind(this)
+    this.post = this.post.bind(this)
+    this.setToken = this.setToken.bind(this)
+
     // axios实例
     this._axiosCustom = axios.create({
       withCredentials: true,
@@ -35,11 +43,11 @@ class Axios {
   }
 
   // 初始化模块
-  _init (): void {
+  private _init (): void {
     // 适配 小程序
     this._axiosCustom.defaults.adapter = this._uniAppRequest.bind(this)
-    // 获取store实例
-    this.store = getStore()
+    // // 获取store实例
+    // this.store = getStore()
   }
 
   /**
@@ -77,33 +85,59 @@ class Axios {
   }
 
   // 初始化axios
-  _initAxios (): void {
+  private _initAxios (): void {
     this._axiosCustom = axios.create({
       timeout: (2 * 60 * 1000),
     })
   }
+  public setToken(token:string){
+    this._token = token
+  }
+    /**
+   * 获取store实例
+   */
+  private _getStore () {
+    const store = getStore()
+    console.log('_getStore',store);
+
+    this.store = store
+  }
+
 
   // 设置公共header
-  _getHeader (headers:IAnyObj={}): IAnyObj {
+  private _getHeader (headers:IAnyObj={}): IAnyObj {
     const globalHeaders = {}
     if (!headers['content-type']) {
       Object.assign(globalHeaders, {
         'content-type': 'application/json',
       })
     }
+    if (!this.store) {
+      this._getStore()
+    }
+    const store = getStore?.()
+      const state: any = store?.getState?.()
+    console.log('+++=++',state);
+
     // token
-    // if (this.store?.state?.user?.token) {
+    // if (state?.user?.token) {
     //   Object.assign(globalHeaders, {
-    //     token: this.store.state.user.token,
+    //     token: state.user.token,
     //   })
     // }
+    if (this._token) {
+      Object.assign(globalHeaders, {
+        // token: this._token,
+        Authorization:this._token,
+      })
+    }
     return Object.assign(globalHeaders, headers)
   }
 
   /**
    * 获取公共参数
    */
-  _getParams (params: any, config: IAnyObj) {
+  private _getParams (params: any, config: IAnyObj) {
     let newParams: FormData|null = null
     if (config.uploadFile) {
       if (utils.getElementType(config.uploadFileKey) !== 'array') throw new Error('uploadFileKey必须是一个数组')
@@ -132,7 +166,7 @@ class Axios {
    * @param url 计算url
    * @returns url
    */
-  _getUrl (url: string, target = 'from-muzat'): string {
+  private _getUrl (url: string, target = 'from-muzat'): string {
     if (/https?:/.test(url)) return url
     switch (target) {
       case 'apptest': {
@@ -160,7 +194,7 @@ class Axios {
    * @param + autoCancel: boolean 离开路由时是否自动取消当前页面发起的所有请求，默认: true
    * @returns Promise<any>
    */
-  request<T> (url: string, params: IAnyObj = {}, config: IAnyObj = {}): Promise<IResult<T>> {
+  private request<T> (url: string, params: IAnyObj = {}, config: IAnyObj = {}): Promise<IResult<T>> {
     if (!this._axiosCustom) {
       return (Promise.resolve({
         code: -100,
@@ -286,7 +320,7 @@ class Axios {
     })
   }
 
-  private _get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1, requestMethod:RequestFucNames = RequestFucNames.REQUEST): Promise<IResult<T>> {
+  private _get<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, _outTime = -1, requestMethod:RequestFucNames = RequestFucNames.REQUEST): Promise<IResult<T>> {
     if (!href) return Promise.reject(new Error('缺少入口'))
     const newConfig = {
       headers: config.headers || {},
@@ -345,7 +379,7 @@ class Axios {
    * @param config: object axios参数，选填，默认: {}
    * @returns Promise<any>
    */
-  async post<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1): Promise<IResult<T>> {
+  public async post<T> (href: string, params: IAnyObj = {}, config: IAnyObj = {}, outTime = -1): Promise<IResult<T>> {
     return this._post<T>(href, params, config, outTime)
   }
 }
