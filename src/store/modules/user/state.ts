@@ -3,6 +3,7 @@ import IUserState  from "./types";
 /**
  * 用于流程控制，初始化完毕的时候调用这个就可以
  */
+// eslint-disable-next-line import/no-mutable-exports
 export let r = null
 
 /**
