@@ -1,3 +1,4 @@
+import { ResultCode } from "@/api/types/rest"
 import { getActionsReturnType } from "@/defineds/redux"
 import HomeApi from '@api/IHome/index'
 import { getStore } from "@store/index"
@@ -10,13 +11,11 @@ const homePageActions = {
       const state: any = store?.getState?.()
       // 等待数据初始化
       await state?.user?.isReady
-      console.log('state---', state?.user);
-      const { data } = await HomeApi.getHomePageDataApi()
-      console.log('data', data);
-
+      const { data,code } = await HomeApi.getHomePageDataApi()
+      if(code !== ResultCode.SUCCESS) return
       dispatch({
         type: HomePageTypes.GET_HOME_PAGE_DATA,
-        payload: 'reverseName',
+        payload: data,
       })
       return data
     }

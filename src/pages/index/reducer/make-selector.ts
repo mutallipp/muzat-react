@@ -1,13 +1,13 @@
 import { createStructuredSelector } from 'reselect'
 import {
-  makeSelectCountryList,
+  makeSelectSwiperImgList,
 } from './selector'
 
 const makeSelectors = createStructuredSelector({
   /**
-   * 国家列表
+   * 首页轮播图
    * */
-  countryList: makeSelectCountryList(),
+   swiperImgList: makeSelectSwiperImgList(),
 })
 
 export default makeSelectors

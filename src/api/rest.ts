@@ -98,8 +98,6 @@ class Axios {
    */
   private _getStore () {
     const store = getStore()
-    console.log('_getStore',store);
-
     this.store = store
   }
 
@@ -115,9 +113,6 @@ class Axios {
     if (!this.store) {
       this._getStore()
     }
-    const store = getStore?.()
-      const state: any = store?.getState?.()
-    console.log('+++=++',state);
 
     // token
     // if (state?.user?.token) {
@@ -248,8 +243,6 @@ class Axios {
     return this._axiosCustom(args).then(async res => {
       Taro.hideToast()
       const { data } = res
-      console.log('请求成功', res)
-
       switch (target) {
         case 'from-muzat':
         case 'from-node':

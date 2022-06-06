@@ -3,8 +3,12 @@ import type { FC } from '@defineds/index'
 import { Swiper, SwiperItem,Image } from '@tarojs/components'
 
 import './index.scss'
+import { IHomePageSwiperProps } from './types'
 
-const HomePageSwiper: FC<any> = (props: any) => {
+const HomePageSwiper: FC<IHomePageSwiperProps> = (props: IHomePageSwiperProps) => {
+  const {
+    swiperImgList = []
+  } = props
   const bannerList = new Array(5).fill('http://qiniu.mutallip.cn/b6d30d14aaa3461982c581b5e79f4bb4.png')
 
   return (
@@ -16,9 +20,9 @@ const HomePageSwiper: FC<any> = (props: any) => {
       indicatorDots
       autoplay
     >
-      {bannerList.map((item,index) => (
-        <SwiperItem key={index} className=''>
-          <Image src={item} className='banner-list-item-img' />
+      {swiperImgList.map((item,index) => (
+        <SwiperItem key={item.id+index} className=''>
+          <Image src={item.imgUrl} className='banner-list-item-img' />
           {/* banner-{item} */}
         </SwiperItem>
       ))}

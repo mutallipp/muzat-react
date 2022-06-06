@@ -1,18 +1,18 @@
-import React, { useCallback , useEffect } from 'react'
+import React, { useCallback , useEffect , useMemo } from 'react'
+import { useDispatch,useSelector } from 'react-redux'
 import { FC } from '@defineds/index'
 import { View } from '@tarojs/components'
-// import makeSelectors from '@store/modules/user/make-selector'
-import { useDispatch } from 'react-redux'
+// import makeSelect from '@store/modules/user/make-selector'
 import HomePageSwiper from './components/home-page-swiper'
+import makeSelectHomePage from './reducer/make-selector'
 
 import './index.scss'
 import homePageActions from './reducer/actions'
 
-const Index: FC<any> = () => {
-  // const {
-  //   token,
-  //   isReady,
-  // } = useSelector(makeSelectors)
+const Index: FC = () => {
+  const {
+    swiperImgList
+  } = useSelector(makeSelectHomePage)
 
   const dispatch = useDispatch()
 
@@ -26,10 +26,11 @@ const Index: FC<any> = () => {
   useEffect(()=>{
     init()
   },[init])
+
   return (
     <View>
       index
-      <HomePageSwiper />
+      <HomePageSwiper swiperImgList={swiperImgList} />
     </View>
   )
 }

@@ -12,8 +12,17 @@ function homePageReducer(state: IHomePageState = homePageState, action: HomePage
      * 设置是否反转显示表单姓名
      * */
     case HomePageTypes.GET_HOME_PAGE_DATA: {
+      console.log('action.payload',action.payload);
+
+      const {
+        swiperImgList = [],
+        categoriesList = [],
+        productList = [],
+      } = action.payload
       const newState = {
-        reverseName: action.payload,
+        swiperImgList,
+        categoriesList,
+        productList,
       }
       Object.assign(state, newState)
       break
