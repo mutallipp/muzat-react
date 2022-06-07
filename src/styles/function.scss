@@ -1,0 +1,11 @@
+
+// 单行文本 内容超出时，使用省略号
+@import "./function/text-ellipsis";
+// 处理外边距溢出与高度闭合问题
+@import "./function/clear-float";
+// 创建全局样式
+@import "./function/create-common-px-style.scss";
+// 兼容iphone安全区域样式
+@import "./function/home-indicator-compatible";
+// 小三角
+@import "./function/triangle";

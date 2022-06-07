@@ -1,0 +1,27 @@
+$orange: #ed6d3d;
+$white: #fff;
+$black: #000;
+$red: #f00;
+$grey: #646464;
+$blue: #008aff;
+$yellow: #ffa500;
+$green: #19be6b;
+// 浏览器默认背景颜色
+$default-background: #f5f5f5;
+$gray-20: #333;
+$gray-40: #999999;
+$gray-60: #EFEFEF;
+$gray-80: #F6F6F6;
+$gray-100: #FAFAFA;
+
+// main-content
+$mainContentPaddingTop: 20px;
+$mainContentPaddingRight: 20px;
+$mainContentPaddingBottom: 20px;
+$mainContentPaddingLeft: 20px;
+$mainContentPadding: 20px;
+
+// 组件前缀
+$pixel: 'mutallip';
+
+@import './index.scss'

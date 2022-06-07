@@ -1,0 +1,40 @@
+// 生成 .f-s-1 { font-size: 1px; } 至 .f-s-50 { font-size: 50px; } 的class
+@include create-common-px-style('f-s-', 'font-size', 'px', 0, 50);
+// 生成 .m-t-1 { margin-top: 1px; } 至 .m-t-50 { margin-top: 50px; } 的class
+@include create-common-px-style('m-t-', 'margin-top', 'px', 0, 50);
+// 生成 .m-r-1 { margin-right: 1px; } 至 .m-r-50 { margin-right: 50px; } 的class
+@include create-common-px-style('m-r-', 'margin-right', 'px', 0, 50);
+// 生成 .m-b-1 { margin-bottom: 1px; } 至 .m-b-50 { margin-bottom: 50px; } 的class
+@include create-common-px-style('m-b-', 'margin-bottom', 'px', 0, 50);
+// 生成 .m-l-1 { margin-left: 1px; } 至 .m-l-50 { margin-left: 50px; } 的class
+@include create-common-px-style('m-l-', 'margin-left', 'px', 0, 50);
+// 生成 .p-t-1 { padding-top: 1px; } 至 .p-t-50 { padding-top: 50px; } 的class
+@include create-common-px-style('p-t-', 'padding-top', 'px', 0, 50);
+// 生成 .p-r-1 { padding-right: 1px; } 至 .p-r-50 { padding-right: 50px; } 的class
+@include create-common-px-style('p-r-', 'padding-right', 'px', 0, 50);
+// 生成 .p-b-1 { padding-bottom: 1px; } 至 .p-b-50 { padding-bottom: 50px; } 的class
+@include create-common-px-style('p-b-', 'padding-bottom', 'px', 0, 50);
+// 生成 .p-l-1 { padding-left: 1px; } 至 .p-l-50 { padding-left: 50px; } 的class
+@include create-common-px-style('p-l-', 'padding-left', 'px', 0, 50);
+// 生成 .p-1 { padding: 1px; } 至 .p-50 { padding: 50px; } 的class
+@include create-common-px-style('p-', 'padding', 'px', 0, 50);
+// 生成 .p-1 { margin: 1px; } 至 .p-50 { margin: 50px; } 的class
+@include create-common-px-style('m-', 'margin', 'px', 0, 50);
+
+// 生成 .m-x-1 { margin-left: 1rpx; margin-right: 1rpx;} 至 .m-50 { margin-left: 1px; margin-right: 1rpx;} 的class
+@include create-common-more-px-style('m-x-',('margin-left','margin-right'),'px',0,50);
+// 生成 .m-x-1 { margin-top: 1rpx; margin-right: 1rpx;} 至 .m-50 { margin-top: 50rpx; margin-right: 50rpx;} 的class
+@include create-common-more-px-style('m-y-',('margin-top','margin-bottom'),'px',0,50);
+// 生成 .m-x-1 { padding-left: 1rpx; padding-right: 1rpx;} 至 .m-50 { padding-left: 1px; padding-right: 1rpx;} 的class
+@include create-common-more-px-style('p-x-',('padding-left','padding-right'),'px',0,50);
+// 生成 .m-x-1 { padding-top: 1rpx; padding-right: 1rpx;} 至 .m-50 { padding-top: 50rpx; padding-right: 50rpx;} 的class
+@include create-common-more-px-style('p-y-',('padding-top','padding-bottom'),'px',0,50);
+
+@include create-common-px-style('f-s-','font-size',1,50);
+
+// variable.scss中定义的所有颜色变量对象组成的数组
+$colors: (orange: $orange, white: $white, black: $black, red: $red, grey: $grey, blue: $blue, yellow: $yellow, green: $green,default:$default-background);
+// 生成 .c-orange { color: $orange; } .c-white { color: $white; } ... 等颜色
+@include create-common-color-style($colors, 'c-', 'color');
+// 生成 .bg-orange {background-color:$orange;}
+@include create-common-color-style($colors,'bg-','background-color');

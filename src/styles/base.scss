@@ -1,0 +1,97 @@
+// 页面容器
+.page-container {
+  background-color: $default-background;
+  padding: 10px;
+  height: calc(100vh - 50px);
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  @mixin float-box () {
+    content: '';
+    width: 100vw;
+    height: 20px;
+    position: fixed;
+    left: 0;
+    z-index: 5;
+    background-color: $default-background;
+    opacity: 1;
+    animation-name: hidden-float-line;
+    animation-duration: 16s;
+    animation-timing-function: linear;
+  }
+
+  &.mask {
+    &:before {
+      @include float-box();
+      top: 50px;
+    }
+
+    &:after {
+      @include float-box();
+      bottom: 0;
+    }
+  }
+}
+
+.page-default{
+  background-color: $default-background;
+  // padding: 20px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  @mixin float-box () {
+    content: '';
+    width: 100vw;
+    height: 20px;
+    position: fixed;
+    left: 0;
+    z-index: 5;
+    background-color: $default-background;
+    opacity: 1;
+    animation-name: hidden-float-line;
+    animation-duration: 16s;
+    animation-timing-function: linear;
+  }
+
+  &.mask {
+    &:before {
+      @include float-box();
+      top: 50px;
+    }
+
+    &:after {
+      @include float-box();
+      bottom: 0;
+    }
+  }
+}
+
+.page-content{
+  padding: #{$mainContentPaddingTop} #{$mainContentPaddingRight} #{$mainContentPaddingBottom} #{$mainContentPaddingLeft};
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+.flex{
+  display: flex;
+}
+
+// 设置iphone安全区域的颜色为灰白色
+.iphone-grey {
+  @include home-indicator-compatible($default-background);
+}
+
+// 设置iphone安全区域的颜色为白色
+.iphone-white {
+  @include home-indicator-compatible($white);
+}

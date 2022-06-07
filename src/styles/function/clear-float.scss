@@ -1,0 +1,14 @@
+// 处理外边距溢出与高度闭合问题
+@mixin clear-float () {
+  &:before {
+    content: '';
+    display: table;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+

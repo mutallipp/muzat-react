@@ -2,7 +2,7 @@ import React, { useCallback , useEffect , useMemo } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { FC } from '@defineds/index'
 import { View } from '@tarojs/components'
-// import makeSelect from '@store/modules/user/make-selector'
+import Category from '@components/category'
 import HomePageSwiper from './components/home-page-swiper'
 import makeSelectHomePage from './reducer/make-selector'
 
@@ -11,7 +11,9 @@ import homePageActions from './reducer/actions'
 
 const Index: FC = () => {
   const {
-    swiperImgList
+    swiperImgList,
+    categoryList,
+    productList,
   } = useSelector(makeSelectHomePage)
 
   const dispatch = useDispatch()
@@ -28,9 +30,9 @@ const Index: FC = () => {
   },[init])
 
   return (
-    <View>
-      index
+    <View className='page-container'>
       <HomePageSwiper swiperImgList={swiperImgList} />
+      <Category categoryList={categoryList} />
     </View>
   )
 }
