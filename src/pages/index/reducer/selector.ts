@@ -33,6 +33,6 @@ export const makeSelectCategoriesList = () => createSelector(
 export const makeSelectProductList = () => createSelector(
   selectAddressState,
   state => {
-    return state.categoriesList
+    return state.productList
   },
 )

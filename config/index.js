@@ -1,4 +1,8 @@
 import path from 'path'
+import pxtoviewport from 'postcss-px-to-viewport'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import cssnano from 'cssnano'
+import autoprefixer from 'autoprefixer'
 
 function resolve (dir) {
   return path.resolve(__dirname,'..', dir)
@@ -81,6 +85,105 @@ const config = {
       },
     },
   },
+  module: {
+    rules: [
+      {
+        test: /\.(t|j)sx?$/,
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage',
+                  corejs: 3,
+                },
+              ],
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+            plugins: [
+              [
+                'babel-plugin-react-scoped-css',
+                {
+                  include: '.scoped.s?css$',
+                },
+              ],
+              [
+                '@babel/plugin-proposal-decorators',
+                {
+                  legacy: true,
+                },
+              ],
+              [
+                '@babel/plugin-proposal-class-properties',
+                {
+                  loose: true,
+                },
+              ],
+              [
+                '@babel/plugin-proposal-private-methods',
+                {
+                  loose: true,
+                },
+              ],
+              '@loadable/babel-plugin',
+              // ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+            ],
+          },
+        }],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          process.env.NODE_ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'scoped-css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  autoprefixer,
+                  pxtoviewport({
+                    viewportWidth: 375,
+                  }),
+                ].concat(process.env.NODE_ENV === 'development' ? [] : [
+                  cssnano,
+                ]),
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          process.env.NODE_ENV === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'scoped-css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  autoprefixer,
+                  pxtoviewport({
+                    viewportWidth: 375,
+                  }),
+                ].concat(process.env.NODE_ENV === 'development' ? [] : [
+                  cssnano,
+                ]),
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+
 };
 
 module.exports = function (merge) {

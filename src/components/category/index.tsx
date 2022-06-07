@@ -29,19 +29,19 @@ const Category: FC<ICategoryProps> = (props: ICategoryProps) => {
   },[])
   return (
     <div style={style}>
-    <Grid data={dataSource}
-      columnNum={4}
-      hasLine={false}
-      square={false}
-      renderItem={(dataItem:ICategoryItem) => (
-        <div style={{ padding: '12.5px' }} onClick={()=>handleClick(dataItem)}>
-          <Image src={dataItem.icon} style={{ width: '75px', height: '75px' }} />
-          <div style={{ color: '#888', fontSize: '14px', marginTop: '8px' }}>
-            <span>{dataItem?.name}</span>
+      <Grid data={dataSource}
+        columnNum={4}
+        hasLine={false}
+        square={false}
+        renderItem={(dataItem:ICategoryItem) => (
+          <div style={{ padding: '12.5px 12.5px 0px 12.5px' }} onClick={()=>handleClick(dataItem)}>
+            <Image src={dataItem.icon} style={{ width: '75px', height: '75px' }} />
+            <div style={{ color: '#888', fontSize: '14px', marginTop: '8px' }}>
+              <span>{dataItem?.name}</span>
+            </div>
           </div>
-        </div>
-      )}
-    />
+        )}
+      />
     </div>
   )
 }

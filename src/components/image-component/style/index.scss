@@ -1,0 +1,88 @@
+.aspectratio {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: top;
+  &:before {
+    content: '';
+    display: block;
+    width: 1px;
+    margin-left: -1px;
+    height: 0;
+  }
+  .image-box {
+    .image-inner,
+    .img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      object-fit: cover;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      // transition: opacity .3s,transform 8s cubic-bezier(.25,.46,.45,.94);
+    }
+    .watermark {
+      position: absolute;
+      width: 11px;
+      height: 94px;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 14px;
+    }
+  }
+  .image-box .lazyloaded{
+    // animation: 1.25s cubic-bezier(.26,.54,.32,1) forwards ani-fadeIn;
+  }
+}
+/*
+*  2021年09月26日19:14:42
+*  李洋洋
+*  商品详情页商品图片展示改版
+*  蓝湖：https://lanhuapp.com/web/#/item/project/detailDetach?pid=0e8b546e-7603-4e39-b341-0ade84252988&project_id=0e8b546e-7603-4e39-b341-0ade84252988&image_id=ed3db94c-d2c5-446b-89d1-fc5b740e7685&fromEditor=true
+*/
+// .swiper-wrapper {
+//   .image-box {
+//     width: 335px;
+//     height: 446px;
+//     margin: 0 auto;
+//     img {
+//       position: static!important;
+//     }
+//   }
+// }
+.mask-img-box {
+  .swiper-wrapper {
+    .image-box {
+      width: 100%!important;
+    }
+  }
+}
+/*
+* 不写css样式了 ， 改成在 product-swiper.tsx文件直接传递给img组件
+*  END
+*/
+
+.w-316-469 {
+  padding-bottom: 149%;
+}
+
+.w-1-1 {
+  padding-bottom: 100%;
+}
+
+@keyframes ani-fadeIn {
+  from {
+      opacity: 0;
+      z-index: 0;
+  }
+
+  to {
+      opacity: 1;
+      z-index: 0;
+  }
+}

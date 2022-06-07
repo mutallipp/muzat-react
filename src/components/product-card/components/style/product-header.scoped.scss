@@ -1,0 +1,15 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  .left{
+    .avatar{
+      border-radius: 50%;
+      overflow: hidden;
+      .avatar-img{
+        width: '35px';
+        height: '35px';
+      }
+    }
+
+  }
+}

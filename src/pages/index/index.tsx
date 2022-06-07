@@ -1,8 +1,10 @@
 import React, { useCallback , useEffect , useMemo } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
+import { WhiteSpace } from 'antd-mobile'
 import { FC } from '@defineds/index'
 import { View } from '@tarojs/components'
 import Category from '@components/category'
+import ProductCard from '@components/product-card'
 import HomePageSwiper from './components/home-page-swiper'
 import makeSelectHomePage from './reducer/make-selector'
 
@@ -33,6 +35,12 @@ const Index: FC<any> = () => {
     <View className='page-container'>
       <HomePageSwiper swiperImgList={swiperImgList} />
       <Category categoryList={categoryList} style={{marginTop:'12px'}} />
+      {productList.map(item=>(
+        <div key={item.id}>
+        <WhiteSpace  size='lg' />
+        <ProductCard  productItem={item} />
+        </div>
+      ))}
     </View>
   )
 }
