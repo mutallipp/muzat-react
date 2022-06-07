@@ -14,7 +14,12 @@ const config = {
   },
   sourceRoot: "src",
   outputRoot: "dist",
-  plugins: [],
+  plugins: [
+    ['@tarojs/plugin-html', {
+      // 过滤 antd 组件库的前缀：am-
+      pxtransformBlackList: [/am-/, /demo-/, /^body/]
+    }]
+  ],
   defineConstants: {},
   copy: {
     patterns: [],

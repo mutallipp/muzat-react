@@ -18,6 +18,10 @@ module.exports = {
         camel2DashComponentName: false
       },
       'taro-hooks',
-    ]
+    ],
+    ['import', {
+      libraryName: 'antd-mobile',
+      style: 'css'
+    }]
   ],
 };

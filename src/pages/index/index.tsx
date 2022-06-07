@@ -9,7 +9,7 @@ import makeSelectHomePage from './reducer/make-selector'
 import './index.scss'
 import homePageActions from './reducer/actions'
 
-const Index: FC = () => {
+const Index: FC<any> = () => {
   const {
     swiperImgList,
     categoryList,
