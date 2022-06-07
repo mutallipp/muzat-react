@@ -1,40 +1,48 @@
-import React, { useCallback } from 'react'
-import { Button,Tabs,Badge } from 'antd-mobile'
-import { View } from '@tarojs/components'
+import React, { useCallback , useMemo } from 'react'
+import { Grid, Button } from 'antd-mobile'
+import { View,Image } from '@tarojs/components'
 import type { FC } from '@defineds/index'
+import { ICategoryItem } from '@/api/IHome/types'
+import { ICategoryProps } from './types'
 
 import './index.scss'
-import { ICategoryProps } from './types'
 
 const Category: FC<ICategoryProps> = (props: ICategoryProps) => {
   const {
-    categoryList
+    categoryList,
+    style
   } = props
-  const tabs1_1 = [
-    { title: <Badge text='3'>First Tab</Badge> },
-    { title: <Badge text='今日(20)'>Second Tab</Badge> },
-    { title: <Badge dot>Third Tab</Badge> },
-  ]
+  const data1 = Array.from(new Array(9)).map(() => ({
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
+  }))
+  const dataSource = useMemo(()=>{
+    return categoryList.map(item=>{
+      return {
+        ...item,
+        icon:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
+      }
+    })
+  },[categoryList])
+  const handleClick = useCallback((dataItem:ICategoryItem)=>{
+    console.log(dataItem)
+
+  },[])
   return (
-    <View>
-      Category
-      {/* <Button type='warning'>warning</Button> */}
-      <Tabs tabs={tabs1_1}
-        initialPage={1}
-        onChange={(tab, index) => { console.log('onChange', index, tab) }}
-        onTabClick={(tab, index) => { console.log('onTabClick', index, tab) }}
-      >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-        Content of first tab
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-        Content of second tab
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
-        Content of third tab
-      </div>
-    </Tabs>
-    </View>
+    <div style={style}>
+    <Grid data={dataSource}
+      columnNum={4}
+      hasLine={false}
+      square={false}
+      renderItem={(dataItem:ICategoryItem) => (
+        <div style={{ padding: '12.5px' }} onClick={()=>handleClick(dataItem)}>
+          <Image src={dataItem.icon} style={{ width: '75px', height: '75px' }} />
+          <div style={{ color: '#888', fontSize: '14px', marginTop: '8px' }}>
+            <span>{dataItem?.name}</span>
+          </div>
+        </div>
+      )}
+    />
+    </div>
   )
 }
 export default Category

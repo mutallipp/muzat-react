@@ -22,11 +22,12 @@ const HomePageSwiper: FC<IHomePageSwiperProps> = (props: IHomePageSwiperProps) =
     >
       {swiperImgList.map((item,index) => (
         <SwiperItem key={item.id+index} className=''>
-          <Image src={item.imgUrl} className='banner-list-item-img' />
+          <Image src={item.imgUrl} className='banner-list-item-img' mode='aspectFill' />
           {/* banner-{item} */}
         </SwiperItem>
       ))}
     </Swiper>
   )
 }
+
 export default HomePageSwiper

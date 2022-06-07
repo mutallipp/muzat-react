@@ -32,8 +32,11 @@ const Index: FC<any> = () => {
   return (
     <View className='page-container'>
       <HomePageSwiper swiperImgList={swiperImgList} />
-      <Category categoryList={categoryList} />
+      <Category categoryList={categoryList} style={{marginTop:'12px'}} />
     </View>
   )
 }
+definePageConfig({
+  navigationBarTitleText:'muzat信息平台'
+})
 export default Index
