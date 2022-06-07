@@ -7,9 +7,9 @@ import Category from '@components/category'
 import ProductCard from '@components/product-card'
 import HomePageSwiper from './components/home-page-swiper'
 import makeSelectHomePage from './reducer/make-selector'
-
-import './index.scss'
 import homePageActions from './reducer/actions'
+
+import './style/index.scoped.scss'
 
 const Index: FC<any> = () => {
   const {

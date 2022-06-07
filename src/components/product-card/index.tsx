@@ -6,7 +6,7 @@ import type { FC } from '@defineds/index'
 import ProductHeader from './components/product-header'
 import { IProductCardProps } from './types'
 
-import './index.module.scss'
+import './style/index.scoped.scss'
 
 const ProductCard: FC<IProductCardProps> = (props: IProductCardProps) => {
   const {productItem } = props

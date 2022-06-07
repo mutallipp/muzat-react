@@ -6,6 +6,7 @@ import './style/product-header.scoped.scss'
 
 const ProductHeader: FC<any> = (props: any) => {
   const {productItem } = props
+  console.log('ss');
 
   return (
     <div className='header'>

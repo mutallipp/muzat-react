@@ -5,7 +5,7 @@ import type { FC } from '@defineds/index'
 import { ICategoryItem } from '@/api/IHome/types'
 import { ICategoryProps } from './types'
 
-import './index.scss'
+import './style/index.scoped.scss'
 
 const Category: FC<ICategoryProps> = (props: ICategoryProps) => {
   const {
